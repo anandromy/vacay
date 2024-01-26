@@ -47,3 +47,14 @@ export const validateToken = async () => {
         throw new Error("Invalid token")
     }
 }
+
+export const logoutUser = async () => {
+    const res = await fetch(`${url}/auth/logout`, {
+        method: "GET",
+        credentials: "include"
+    })
+
+    if(!res.ok){
+        throw new Error("Error in logging out")
+    }
+}

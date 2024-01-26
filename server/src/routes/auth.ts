@@ -37,5 +37,10 @@ authRouter.post("/login", async (req: Request, res: Response) => {
 })
 
 authRouter.get("/validate_token", verifyToken, async (req, res) => {
-    res.status(200).json({ userId: req.userId, message: "Help" })
+    res.status(200).json({ userId: req.userId })
+})
+
+authRouter.get("/logout", verifyToken, async (req, res) => {
+    res.cookie("auth_token", "", { httpOnly: true, sameSite: "none", secure: true, maxAge: 0 })
+    return res.sendStatus(200)
 })
