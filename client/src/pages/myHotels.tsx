@@ -6,7 +6,7 @@ export const MyHotels = () => {
         <div className="flex-1 flex flex-col">
             <div className="flex justify-end">
                 <Button asChild>
-                    <Link to="add-hotel">
+                    <Link to="/dashboard/add-hotel">
                         Add hotel
                     </Link>
                 </Button>

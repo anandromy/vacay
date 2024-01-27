@@ -33,13 +33,11 @@ const router = createBrowserRouter([
         },
         {
           path: "my-hotels",
-          element: <MyHotels />,
-          children: [
-            {
-              path: "add-hotel",
-              element: <ManageHotel />
-            }
-          ]
+          element: <MyHotels />
+        },
+        {
+          path: "add-hotel",
+          element: <ManageHotel />
         }
       ]
     }
