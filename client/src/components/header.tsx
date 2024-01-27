@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import { Signup } from "./signup"
 import { Login } from "./login"
 import { useAppContext } from "@/context/appContext"
-import { Button } from "./ui/button"
 import { Account } from "./account"
 
 export const Header = () => {

@@ -9,6 +9,7 @@ import { AppContextProvider } from './context/appContext.tsx'
 import { DashboardHome } from './pages/dashBoardHome.tsx'
 import { MyHotels } from './pages/myHotels.tsx'
 import { DashBoardPage } from './pages/dashboard.tsx'
+import { ManageHotel } from './pages/manageHotel.tsx'
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,13 @@ const router = createBrowserRouter([
         },
         {
           path: "my-hotels",
-          element: <MyHotels />
+          element: <MyHotels />,
+          children: [
+            {
+              path: "add-hotel",
+              element: <ManageHotel />
+            }
+          ]
         }
       ]
     }
