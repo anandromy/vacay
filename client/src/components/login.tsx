@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogT
 import { Input } from "./ui/input"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 import * as apiClient from "../apiClient"
 import { LoaderIcon } from "lucide-react"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -19,12 +19,15 @@ export const loginFormData = UserSchema.partial({
 })
 
 export const Login = ({trigger}: LoginProps) => {
+    const queryClient = useQueryClient()
+
     const { register, formState, handleSubmit } = useForm<z.infer<typeof loginFormData>>({
         resolver: zodResolver(loginFormData)
     })
 
     const { mutate, isLoading } = useMutation(apiClient.loginUser, {
         onSuccess: (res) => {
+            queryClient.invalidateQueries("validate_token")
             console.log(res.message)
         },
         onError: (err: Error) => {

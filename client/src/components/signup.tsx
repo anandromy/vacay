@@ -17,8 +17,8 @@ export const Signup = () => {
    })
 
    const { mutate, isLoading } = useMutation(apiClient.signup, {
-        onSuccess: async () => {
-            await queryClient.invalidateQueries("validate_token")
+        onSuccess: () => {
+            queryClient.invalidateQueries("validate_token")
         },
         onError: (error: Error) => {
             console.log(error.message)
