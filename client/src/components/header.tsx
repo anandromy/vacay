@@ -24,7 +24,7 @@ export const Header = () => {
               <span>USD</span>
               <ChevronDownIcon />
             </button>
-            <Button variant="ghost" className="hover:bg-gray-300 rounded-full">My Bookings</Button>
+            <button className="py-2 px-4 rounded-full hover:bg-gray-300 hover:bg-opacity-15 transition-all ease-in-out">My Bookings</button>
             <Account />
           </div>
           ):(
