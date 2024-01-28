@@ -17,18 +17,18 @@ export const UserSchema = z.object({
 
 export const HotelZodSchema = z.object({
     userId: z.string(),
-    name: z.string(),
-    city: z.string(),
-    country: z.string(),
-    description: z.string(),
-    type: z.string(),
+    name: z.string().min(1),
+    city: z.string().min(1),
+    country: z.string().min(1),
+    description: z.string().min(50),
+    type: z.string().min(1),
     adultCount: z.number().min(1),
     childCount: z.number(),
-    pricePerNight: z.number(),
+    pricePerNight: z.number().min(1),
     starRating: z.number().min(1).max(5),
     lastUpdated: z.date(),
-    facilities: z.array(z.string()),
-    imageUrls: z.array(z.string())
+    facilities: z.array(z.string()).min(1),
+    imageUrls: z.array(z.string()).min(1).max(6)
 })
 
 export type HotelModelType = {
