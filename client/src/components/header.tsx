@@ -2,7 +2,8 @@ import { MenuIcon } from "lucide-react"
 
 export const Header = () => {
     return(
-        <header className="flex items-center justify-between pt-6 md:max-w-[85rem] mx-auto w-full px-6">
+        <header className="sticky top-0 px-6 py-4">
+          <div className="flex items-center justify-between md:max-w-[85rem] mx-auto w-full">
         <div className="flex items-center gap-x-3 md:gap-x-6 flex-1 md:items-stretch">
           <MenuIcon className="w-6 h-6 md:hidden" />
           <h2 className=" hidden font-bold text-3xl italic md:block">vacay</h2>
@@ -13,6 +14,7 @@ export const Header = () => {
           <button className="rounded-full py-2 px-4 border">Sign up</button>
           <button className="rounded-full py-2 px-4 border">Log in</button>
         </div>
-      </header>
+      </div>
+        </header>
     )
 }
