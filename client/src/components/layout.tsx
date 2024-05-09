@@ -8,6 +8,6 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
             <main className="max-w-[85rem] mx-auto w-full p-6 flex-1 flex flex-col">
                 {children}
             </main>
-    </div> 
+        </div> 
     )
 }
