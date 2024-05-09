@@ -1,4 +1,4 @@
-import { MenuIcon } from "lucide-react"
+import { MenuIcon, ChevronDownIcon } from "lucide-react"
 import { useScrollPosition } from "../hooks/useScrollPosition"
 
 export const Header = () => {
@@ -13,9 +13,12 @@ export const Header = () => {
           <input className="hidden md:block text-black focus:outline-none rounded border py-2 px-3 md:max-w-[420px] w-1/2" placeholder="Search for destinations" />
         </div>
         <div className="flex items-center gap-6">
-          <p className="hidden md:block">USD</p>
-          <button className="rounded-full py-2 px-4 border">Sign up</button>
-          <button className="rounded-full py-2 px-4 border">Log in</button>
+          <button className="hidden md:flex items-center gap-1 py-2 px-4 rounded-full hover:bg-gray-300 hover:bg-opacity-15 transition-all ease-in-out">
+            <span>USD</span>
+            <ChevronDownIcon />
+          </button>
+          <button className="rounded-full py-2 px-4 hover:bg-gray-300 hover:bg-opacity-15 transition-all ease-in-out">Sign up</button>
+          <button className="rounded-full py-2 px-4 border hover:bg-[#f5f5f5] hover:text-[#05073C] transition-all ease-in-out">Log in</button>
         </div>
       </div>
         </header>
