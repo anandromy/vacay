@@ -1,8 +1,11 @@
 import { MenuIcon } from "lucide-react"
+import { useScrollPosition } from "../hooks/useScrollPosition"
 
 export const Header = () => {
+  const scrollPosition = useScrollPosition()
+
     return(
-        <header className="sticky top-0 px-6 py-4">
+        <header className={`sticky top-0 px-6 py-5 ${scrollPosition > 0 && "bg-[#05073C]"}`}>
           <div className="flex items-center justify-between md:max-w-[85rem] mx-auto w-full">
         <div className="flex items-center gap-x-3 md:gap-x-6 flex-1 md:items-stretch">
           <MenuIcon className="w-6 h-6 md:hidden" />
