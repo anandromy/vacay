@@ -1,6 +1,8 @@
 import { MenuIcon, ChevronDownIcon } from "lucide-react"
 import { useScrollPosition } from "../hooks/useScrollPosition"
 import { Link } from "react-router-dom"
+import { Signup } from "./signup"
+import { Login } from "./login"
 
 export const Header = () => {
   const scrollPosition = useScrollPosition()
@@ -18,8 +20,8 @@ export const Header = () => {
             <span>USD</span>
             <ChevronDownIcon />
           </button>
-          <Link to="/signup" className="rounded-full py-2 px-4 hover:bg-gray-300 hover:bg-opacity-15 transition-all ease-in-out">Sign up</Link>
-          <Link to="/login" className="rounded-full py-2 px-4 border hover:bg-[#f5f5f5] hover:text-[#05073C] transition-all ease-in-out">Log in</Link>
+          <Signup />
+          <Login trigger="Log in"/>
         </div>
       </div>
         </header>
