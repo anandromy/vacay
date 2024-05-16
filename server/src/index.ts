@@ -3,6 +3,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import mongoose from 'mongoose'
 import { userRouter } from './routes/user'
+import { authRouter } from './routes/auth'
 
 
 const app = express()
@@ -12,6 +13,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT
 app.use("/user", userRouter)
+app.use("/auth", authRouter)
 
 
 app.get("/", (req, res) => {

@@ -18,7 +18,7 @@ userRouter.post("/", async (req: Request, res: Response) => {
             email: parseResult.data.email
         })
         if(userExists){
-            return res.status(400).json({ message: "User already exisits" })
+            return res.status(400).json({ message: "User already exists" })
         }
         
         // While creating a new user, mongoose will only pick and choose the properties defined inside user model even if there are some extras
