@@ -4,6 +4,8 @@ import 'dotenv/config'
 import mongoose from 'mongoose'
 import { userRouter } from './routes/user'
 import { authRouter } from './routes/auth'
+// Parses cookies, without it req.cookies would be
+import cookieParser from "cookie-parser"
 
 
 const app = express()
@@ -16,6 +18,8 @@ app.use(cors({
 }))
 
 app.use(express.json())
+app.use(cookieParser())
+
 
 const PORT = process.env.PORT
 app.use("/user", userRouter)

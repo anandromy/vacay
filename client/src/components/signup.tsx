@@ -5,19 +5,20 @@ import { Input } from "./ui/input"
 import { UserSchema } from "common-vacay"
 import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 import * as apiClient from "../apiClient"
 import { LoaderIcon } from "lucide-react"
 
 export const Signup = () => {
+   const queryClient = useQueryClient()
 
    const { handleSubmit, register, formState: { errors } } = useForm<z.infer<typeof UserSchema>>({
         resolver: zodResolver(UserSchema)
    })
 
    const { mutate, isLoading } = useMutation(apiClient.signup, {
-        onSuccess: () => {
-            console.log("Registration successfull")
+        onSuccess: async () => {
+            await queryClient.invalidateQueries("validate_token")
         },
         onError: (error: Error) => {
             console.log(error.message)
