@@ -5,6 +5,7 @@ import { Signup } from "./signup"
 import { Login } from "./login"
 import { useAppContext } from "@/context/appContext"
 import { Button } from "./ui/button"
+import { Account } from "./account"
 
 export const Header = () => {
   const scrollPosition = useScrollPosition()
@@ -23,8 +24,8 @@ export const Header = () => {
               <span>USD</span>
               <ChevronDownIcon />
             </button>
-            <Button variant="ghost">My hotels</Button>
-            <Button variant="ghost">Log out</Button>
+            <Button variant="ghost" className="hover:bg-gray-300 rounded-full">My Bookings</Button>
+            <Account />
           </div>
           ):(
             <div className="flex items-center gap-6">

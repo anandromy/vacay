@@ -6,6 +6,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home.tsx'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { AppContextProvider } from './context/appContext.tsx'
+import { DashboardHome } from './pages/dashBoardHome.tsx'
+import { MyHotels } from './pages/myHotels.tsx'
+import { DashBoardPage } from './pages/dashboard.tsx'
 
 
 const router = createBrowserRouter([
@@ -18,7 +21,21 @@ const router = createBrowserRouter([
         element: <Home />
       }
     ]
-  }
+    },
+    {
+      path: "/dashboard",
+      element: <DashboardHome />,
+      children: [
+        {
+          path: "/dashboard",
+          element: <DashBoardPage />
+        },
+        {
+          path: "my-hotels",
+          element: <MyHotels />
+        }
+      ]
+    }
 ])
 
 const queryClient = new QueryClient({
