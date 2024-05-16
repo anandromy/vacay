@@ -13,11 +13,11 @@ export const DashBoardSidebar = () => {
             </div>
             <div className="flex-1 flex flex-col w-full">
                 <nav className="py-6 px-6 flex flex-col items-start gap-3">
-                    <SidebarItem href="dashboard" label="Dashboard" icon={LayoutDashboardIcon} />
-                    <SidebarItem href="my-bookings" label="My bookings" icon={CalendarCheckIcon} />
-                    <SidebarItem href="my-hotels" label="My hotels" icon={HotelIcon} />
-                    <SidebarItem href="add-tour" label="Add tour" icon={CalendarPlus2Icon} />
-                    <SidebarItem href="profile" label="My Profile" icon={UserIcon} />
+                    <SidebarItem href="" label="Dashboard" icon={LayoutDashboardIcon} />
+                    <SidebarItem href="/my-bookings" label="My bookings" icon={CalendarCheckIcon} />
+                    <SidebarItem href="/my-hotels" label="My hotels" icon={HotelIcon} />
+                    <SidebarItem href="/add-tour" label="Add tour" icon={CalendarPlus2Icon} />
+                    <SidebarItem href="/profile" label="My Profile" icon={UserIcon} />
                     <Button variant="sidebar" className="flex items-center gap-2 w-full justify-start hover:bg-muted/10">
                         <LogOutIcon />
                         Logout
