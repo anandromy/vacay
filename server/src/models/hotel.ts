@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { HotelModelType } from "common-vacay"
 
 const hotelSchema = new mongoose.Schema({
     userId: { type: String, required: true },
@@ -16,4 +17,4 @@ const hotelSchema = new mongoose.Schema({
     imageUrls: [{ type: String,  required: true }]
 })
 
-export const Hotel = mongoose.model("Hotel", hotelSchema)
+export const Hotel = mongoose.model<HotelModelType>("Hotel", hotelSchema)
