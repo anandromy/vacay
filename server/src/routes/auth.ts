@@ -21,7 +21,6 @@ authRouter.post("/login", async (req: Request, res: Response) => {
             return res.status(404).json({ message: "User doesn't exists" })
         }
         const isMatch = await bcrypt.compare(parseResult.data.password, userExists.password)
-        console.log("======ISmATCH", isMatch)
         if(!isMatch){
             return res.status(400).json({ message: "Invalid credentials" })
         }

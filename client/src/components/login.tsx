@@ -1,12 +1,41 @@
+import { UserSchema } from "common-vacay"
 import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { Input } from "./ui/input"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { useMutation } from "react-query"
+import * as apiClient from "../apiClient"
+import { LoaderIcon } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 type LoginProps = {
     trigger: string
 }
 
+export const loginFormData = UserSchema.partial({
+    firstName: true,
+    lastName: true
+})
+
 export const Login = ({trigger}: LoginProps) => {
+    const { register, formState, handleSubmit } = useForm<z.infer<typeof loginFormData>>({
+        resolver: zodResolver(loginFormData)
+    })
+
+    const { mutate, isLoading } = useMutation(apiClient.loginUser, {
+        onSuccess: (res) => {
+            console.log(res.message)
+        },
+        onError: (err: Error) => {
+            console.log(err.message)
+        }
+    })
+
+    const onSubmit = handleSubmit((data) => {
+        mutate(data)
+    })
+
     return(
         <Dialog>
             <DialogTrigger asChild>
@@ -17,10 +46,22 @@ export const Login = ({trigger}: LoginProps) => {
                     <DialogTitle className="text-center">Log in to vacay</DialogTitle>
                 </DialogHeader>
                 <div>
-                    <form className="flex flex-col gap-3">
-                        <Input placeholder="Email"/>
-                        <Input placeholder="Passwod" type="password"/>
-                        <Button className="mt-1">Log in</Button>
+                    <form className="flex flex-col gap-3" onSubmit={onSubmit}>
+                        <Input placeholder="Email" {...register("email")} />
+                        {formState.errors.email && (
+                            <span className="text-destructive text-sm">{formState.errors.email.message}</span>
+                        )}
+                        <Input placeholder="Passwod" type="password" {...register("password")} />
+                        {formState.errors.password && (
+                            <span className="text-destructive text-sm">{formState.errors.password.message}</span>
+                        )}
+                        <Button className="mt-1" disabled={isLoading}>
+                            {isLoading ? (
+                                <LoaderIcon className="text-muted-foreground w-5 h-5 animate-spin"/>
+                            ): (
+                                "Log in"
+                            )}
+                        </Button>
                     </form>
                 </div>
                 <DialogFooter>
