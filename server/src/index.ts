@@ -8,7 +8,13 @@ import { authRouter } from './routes/auth'
 
 const app = express()
 
-app.use(cors())
+// if credentials in cors is not set to true, the cookie sent to the web will not be saved, in other words the response cookie will be ignored
+// the origin attribute defines the cross origin domains from which the server is going to accept requests
+app.use(cors({
+    credentials: true,
+    origin: "http://127.0.0.1:5173"
+}))
+
 app.use(express.json())
 
 const PORT = process.env.PORT

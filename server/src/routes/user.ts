@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express'
 import { User } from '../models/user'
 import { UserSchema } from 'common-vacay'
+import { generateToken } from '../middleware/generateToken'
+import ms from 'ms'
 
 export const userRouter = express.Router()
 
@@ -24,6 +26,8 @@ userRouter.post("/", async (req: Request, res: Response) => {
         // While creating a new user, mongoose will only pick and choose the properties defined inside user model even if there are some extras
         const newUser = new User(parseResult.data)
         await newUser.save()
+        const token = generateToken(`${newUser._id}`)
+        res.cookie("auth_token", token, { httpOnly: true, secure: true, maxAge: ms("2 days"), sameSite: "none" })
         return res.status(200).json({ message: "Created new user" })
     }catch(error){
         console.log("CREATE USER ROUTE: ", error)
