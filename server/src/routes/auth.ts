@@ -1,6 +1,7 @@
 import express, {Request, Response} from "express"
 import { UserSchema } from "common-vacay"
 import { User } from "../models/user"
+import bcrypt from "bcryptjs"
 export const authRouter = express.Router()
 
 const loginData = UserSchema.partial({
@@ -15,9 +16,13 @@ authRouter.post("/login", async (req: Request, res: Response) => {
         return res.status(400).json({ message: "Invalid user data" })
     }
     try{
-        const userExists = await User.findOne({ email: parseResult.data.email, password: parseResult.data.password })
+        const userExists = await User.findOne({ email: parseResult.data.email })
         if(!userExists){
-            return res.status(404).json({ message: "Invalid email or password" })
+            return res.status(404).json({ message: "User doesn't exists" })
+        }
+        const isMatch = bcrypt.compare(parseResult.data.password, userExists.password)
+        if(!isMatch){
+            return res.status(400).json({ message: "Invalid credentials" })
         }
         return res.status(200).json({ message: "Successfully logged in" })
     }catch(error){
