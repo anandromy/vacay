@@ -1,13 +1,10 @@
 import { MenuIcon, ChevronDownIcon } from "lucide-react"
-import { useScrollPosition } from "../../hooks/useScrollPosition"
-import { Button } from "../ui/button"
 import { Account } from "../account"
 
 export const DashBoardHeader = () => {
-  const scrollPosition = useScrollPosition()
   
     return(
-        <header className={`sticky top-0 py-4 px-6 lg:pr-6 lg:pl-[280px] border-b shadow ${scrollPosition > 0 && "bg-[#05073C] text-white"}`}>
+        <header className="sticky top-0 py-4 px-6 lg:pr-6 lg:pl-[280px] border-b shadow bg-background">
           <div className="flex items-center justify-between mx-auto w-full">
             <div>
               <MenuIcon className="h-5 w-5 text-muted-foreground lg:hidden"/>
